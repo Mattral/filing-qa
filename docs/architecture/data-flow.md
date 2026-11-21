@@ -84,7 +84,7 @@ User Query
 └──────────┬──────────┘
            ▼
 ┌─────────────────────┐
-│  Audit Log          │  SHA-256 tamper hash
+│  Audit Log          │  SHA-256 hash per event, not chained
 │  Cost Tracker       │  Per-tenant accumulation
 │  Prometheus Metrics │  Latency, cost, hallucination
 └─────────────────────┘

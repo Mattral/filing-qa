@@ -47,4 +47,4 @@ curl http://localhost:8000/readyz    # readiness (checks all components)
 |---|---|---|
 | Dev/local | 0.5 CPU | 1 GB |
 | Small prod | 2 CPU | 4 GB |
-| Enterprise | 4+ CPU | 8+ GB |
+| Large | 4+ CPU | 8+ GB |

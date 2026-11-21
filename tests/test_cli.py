@@ -1,4 +1,4 @@
-"""CLI tests — upgraded for v2.0 enterprise CLI."""
+"""CLI tests for the v2.0 CLI."""
 
 from typer.testing import CliRunner
 

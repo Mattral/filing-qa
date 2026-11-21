@@ -1,4 +1,4 @@
-"""Unit tests for enterprise document connectors."""
+"""Unit tests for document connectors."""
 
 from pathlib import Path
 
