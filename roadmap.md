@@ -167,6 +167,6 @@ These are targets, not measurements. Measured values are in BENCHMARK_RESULTS.md
 |---|---|---|
 | P99 query latency | < 8 s | Not measured under load (generation alone: p50 3.0 s, p95 5.0 s) |
 | Faithfulness (RAGAS) | ≥ 0.70 | Not measured |
-| Numeric accuracy (LLM judge) | ≥ 0.70 | Not measured. No fabricated numbers in 119 answers (grounding check) |
+| Numeric accuracy (LLM judge) | ≥ 0.70 | Not measured. Grounding check (one `gemini-3.8-flash` run, 119 answers): 6 stated a number absent from context, all correct derivations on review |
 | Error rate | < 1% | Not measured |
 | Test coverage (unit + integration) | ≥ 70% | 75% (2026-10-14) |

@@ -1,5 +1,5 @@
-site_name: RAG Financial Multimodal
-site_description: Enterprise-grade multimodal RAG for financial document analysis
+site_name: filing-qa
+site_description: Research prototype for question answering over financial filings (multimodal RAG)
 site_author: RAG Financial Team
 site_url: https://mattral.github.io/filing-qa/
 repo_url: https://github.com/Mattral/filing-qa

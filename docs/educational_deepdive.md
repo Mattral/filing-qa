@@ -16,7 +16,7 @@ Financial documents are inherently mixed-media. A typical 10-K or earnings relea
 
 Standard text-only RAG pipelines retrieve nothing when the answer lives in a chart. An analyst asking "how has gross margin trended over the past 4 quarters?" gets a hallucinated answer from a text-only system because that information exists only as a line graph on page 8.
 
-**The solution:** use a vision-language model (GPT-4o, Qwen2-VL) to generate dense text descriptions of every chart — including exact axis values, data points, and trends — and embed those descriptions alongside the text. The retriever then treats chart descriptions as first-class citizens.
+**The solution:** use a vision-language model (GPT-4o, Qwen2-VL) to generate dense text descriptions of every chart — including exact axis values, data points, and trends — and embed those descriptions alongside the text. The retriever then treats chart descriptions as first-class citizens. (This repo has not yet measured how accurate the extracted values are; see [BENCHMARK_RESULTS.md](https://github.com/Mattral/filing-qa/blob/main/BENCHMARK_RESULTS.md).)
 
 ---
 

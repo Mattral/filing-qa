@@ -140,8 +140,9 @@ This project follows [Semantic Versioning](https://semver.org/).
 - `evals/retrieval_benchmark.py` (offline BM25 / dense / hybrid benchmark on the real filings)
   and `evals/answer_eval.py` (retrieval + generation, rate-limited and resumable)
 - Full answer-quality run on all 119 questions with `gemini-3.8-flash`, with deterministic
-  scoring plus a number-grounding check (`--regrade` re-scores saved answers offline). No
-  fabricated numbers found, and headline figure stated in 68% of answers
+  scoring plus a number-grounding check (`--regrade` re-scores saved answers offline). The
+  check flagged 6 answers with a number absent from their context, all correct derivations on
+  review, and the headline figure was stated in 68% of answers
 - BENCHMARK_RESULTS.md and README rewritten around measured numbers. Earlier quality,
   retrieval, latency and cost figures are no longer cited. The retrieval chart could not have
   come from this repo, and the others are unverified because no run outputs were committed. The

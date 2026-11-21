@@ -1,6 +1,10 @@
-# RAG Financial Multimodal
+# filing-qa
 
-**Production-grade multimodal RAG for financial document intelligence.**
+**A research prototype for question answering over financial filings.** Multimodal RAG with
+hybrid retrieval and numeric grounding checks, measured on a 119-question golden set. It has not
+been run as a real deployment, and chart extraction has not been validated. The
+[README status section](https://github.com/Mattral/filing-qa#status) lists what is and is not
+measured.
 
 ---
 
@@ -12,15 +16,15 @@
 
 ---
 
-## Why This System Stands Out
+## Approach
 
-| Problem | This System's Solution |
-|---|---|
-| Charts and graphs are invisible to text-only RAG | Vision LLM extraction — GPT-4o / Gemini 2.5 Flash / Qwen2-VL / local vLLM with fallback chain |
-| Exact financial figures miss semantic search | Hybrid RRF: dense embeddings + BM25 keyword search fused with Reciprocal Rank Fusion |
-| LLMs fabricate numbers | Numeric grounding guardrail verifies every stated number against retrieved source text |
-| One API vendor fails = full outage | Provider fallback chains at every model-facing layer |
-| Data must not leave the network | Fully local/open-source configuration: vLLM + BAAI/bge + pgvector, zero external API calls |
+| Problem | Approach | Status |
+|---|---|---|
+| Some data appears only in charts | A vision LLM (GPT-4o / Gemini / Qwen2-VL / local vLLM, with a fallback chain) describes each chart image at ingest | Implemented, not evaluated. Extraction accuracy has not been measured |
+| Exact financial figures miss semantic search | Hybrid RRF: dense embeddings + BM25 keyword search fused with Reciprocal Rank Fusion | Implemented, tested, and measured offline (evidence hit@5 0.71) |
+| LLMs can state numbers their sources do not contain | Numeric grounding guardrail flags numbers in the answer that are absent from the retrieved text | Implemented, tested by unit tests. Not run on the golden set |
+| One failing provider stops a stage | Vision provider chain, parser fallback to `pypdf`, generator fallback model on 429/503 | Implemented. Vision chain and parser fallback are tested with mocks; the generator fallback is not tested |
+| Data must not leave the network | Local/open-source configuration: vLLM + BAAI/bge + pgvector | Implemented, not evaluated. No fully local run has been recorded |
 
 ---
 
@@ -53,9 +57,12 @@ See [Quickstart → Docker](quickstart/docker.md) for the full walkthrough.
 * **Retrieval, measured offline on the real filings:** hybrid RRF puts an answer-bearing chunk in
   the top 5 for 71% of questions at the default 4,000-character chunks, the same as BM25 alone.
   With 1,000-character chunks it reaches 53% versus 42% for BM25.
-* **Answer quality (all 119 questions, `gemini-3.8-flash`):** the asked-for figure was stated in
-  68% of answers (84% when retrieval found the supporting text), and no fabricated numbers were
-  found. Latency under load and cost are not yet measured, and earlier figures were withdrawn. See
+* **Answer quality (all 119 questions, `gemini-3.8-flash`, one run, deterministic scoring with no
+  LLM judge):** the asked-for figure was stated in 68% of answers (84% when retrieval found the
+  supporting text). An automated check flagged 6 answers that stated a number absent from their
+  context. On review by hand all six were correct derivations. The check cannot catch a real
+  number used for the wrong thing. Latency under load and cost are not yet measured, and earlier
+  figures were withdrawn. See
   [BENCHMARK_RESULTS.md](https://github.com/Mattral/filing-qa/blob/main/BENCHMARK_RESULTS.md).
 
 ---
