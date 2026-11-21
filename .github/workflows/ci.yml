@@ -143,6 +143,32 @@ jobs:
           TEST_PGVECTOR_DSN: postgresql://rag:rag@localhost:5432/rag
 
   # ─────────────────────────────────────────────────────────────────────────
+  # The Hugging Face Space has its own tests. Model, PDF and index libraries are
+  # imported lazily, so only the import-time dependencies are installed here:
+  # Gradio at the Space's pin, plus requests, which the Spaces base image provides.
+  space-tests:
+    name: Space Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spaces/rag-financial
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          version: "0.13.6"
+          python-version: "3.11"
+
+      - name: Install the Space's import-time dependencies
+        run: |
+          uv venv /tmp/space-venv
+          GRADIO_PIN=$(grep -E '^gradio' requirements.txt)
+          VIRTUAL_ENV=/tmp/space-venv uv pip install "$GRADIO_PIN" "numpy>=1.26.0" "httpx>=0.27.0" requests pytest
+
+      - name: Run the Space tests
+        run: /tmp/space-venv/bin/python -m pytest -v
+
+  # ─────────────────────────────────────────────────────────────────────────
   # Installs the built wheel (not the source tree) into a clean venv and runs it
   # from outside the checkout, so a broken import path or entry point fails here.
   package:
