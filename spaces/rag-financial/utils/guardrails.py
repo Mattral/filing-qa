@@ -101,7 +101,7 @@ _INJECTION_PATTERNS = re.compile(
     r"disregard\s+(your|all|the)\s+(instructions?|guidelines?|system\s+prompt)|"
     r"jailbreak|act\s+as\s+(an?\s+)?unrestricted|"
     r"you\s+are\s+now\s+(?:a\s+)?(?:dan|evil|uncensored)|"
-    r"bypass\s+(safety|guardrails?|filters?)|"
+    r"bypass\s+(?:(?:all|any|the|your)\s+)?(safety|guardrails?|filters?)|"
     r"pretend\s+you\s+(have\s+no|don't\s+have)\s+(restrictions?|limits?)|"
     r"developer\s+mode\s+enabled|"
     r"new\s+system\s+prompt|override\s+instructions?)",
