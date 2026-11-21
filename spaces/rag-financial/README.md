@@ -8,7 +8,7 @@ sdk_version: 4.44.0
 app_file: app.py
 pinned: true
 license: mit
-short_description: Production RAG for financial documents — charts, hybrid retrieval, numeric guardrails
+short_description: Research prototype RAG for financial filings
 tags:
   - finance
   - rag
@@ -22,9 +22,9 @@ tags:
 
 # 🏦 Multimodal Financial RAG
 
-**Production-grade document intelligence** — chart understanding · hybrid RRF retrieval · numeric guardrails · source citations
+**A research prototype for question answering over financial filings** — chart description · hybrid RRF retrieval · numeric grounding checks · source citations
 
-This Space is a faithful demo of the enterprise system at
+This Space is a demo of the research prototype at
 [github.com/Mattral/filing-qa](https://github.com/Mattral/filing-qa).
 
 ## Features

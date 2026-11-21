@@ -1,7 +1,7 @@
 """app.py — Multimodal Financial RAG · Hugging Face Space (v2.0)
 
-Production-grade RAG for financial documents: chart understanding, hybrid RRF
-retrieval, numeric guardrails, source citations.
+Research-prototype RAG for financial documents: chart description, hybrid RRF
+retrieval, numeric grounding checks, source citations.
 
 Model currency (v2.0): defaults to gemini-2.5-flash — Google retired
 gemini-2.0-flash and the gemini-1.5-* family in favor of the 2.5/3.x
@@ -308,7 +308,7 @@ def create_demo() -> gr.Blocks:
         gr.Markdown(f"""
 # Multimodal Financial RAG
 
-**Production-grade document intelligence** — charts · tables · hybrid retrieval · numeric guardrails · source citations
+**A research prototype for question answering over financial filings** — charts · tables · hybrid retrieval · numeric grounding checks · source citations
 
 [![GitHub](https://img.shields.io/badge/GitHub-Codebase-181717?logo=github&style=flat-square)]({GITHUB_URL})
 [![Stars](https://img.shields.io/github/stars/Mattral/filing-qa?style=social)]({GITHUB_URL})
@@ -326,7 +326,7 @@ def create_demo() -> gr.Blocks:
 | **Numeric grounding guardrail** | Every number verified against source text — hallucinations flagged |
 | **PII + injection protection** | SSNs, IBANs, CUSIPs redacted; prompt injection blocked |
 | **Page-level citations** | Every claim maps to a specific document and page number |
-| **Enterprise codebase** | This demo mirrors [`src/filing_qa/`]({GITHUB_URL}/tree/main/src/filing_qa) |
+| **Full codebase** | This demo mirrors [`src/filing_qa/`]({GITHUB_URL}/tree/main/src/filing_qa) |
 """)
 
         gr.Markdown("---")
@@ -450,7 +450,7 @@ whichever Gemini generation is currently GA. See `utils/generator.py`
 for the full model/pricing table.
 
 **This demo mirrors [`src/filing_qa/`]({GITHUB_URL}/tree/main/src/filing_qa).**
-The full enterprise system additionally includes: multi-tenancy · pgvector/Qdrant ·
+The full research codebase additionally includes: multi-tenancy · pgvector/Qdrant ·
 Redis semantic cache · LangGraph agentic flow · Program-of-Thought calculator ·
 OpenTelemetry · Prometheus/Grafana · Kubernetes · Terraform · RAGAS evaluation · 520+ tests.
 
