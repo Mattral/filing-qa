@@ -122,7 +122,7 @@ def run_guardrails(query: str, answer: str, context_texts: List[str]) -> Guardra
 
     is_injection, injection_match = check_injection(query)
     if is_injection:
-        details.append(f"Injection blocked: Pattern `{injection_match}` detected in query")
+        details.append(f"Injection pattern flagged: `{injection_match}` detected in query")
         return GuardrailResult(
             overall_passed=False, numeric_grounding_passed=False,
             pii_detected=False, injection_detected=True,
@@ -137,7 +137,7 @@ def run_guardrails(query: str, answer: str, context_texts: List[str]) -> Guardra
             f"PII detected & redacted: {', '.join(pii_entities[:3])}"
             + (" (+more)" if len(pii_entities) > 3 else "")
         )
-        warnings.append("Query contained PII - redacted before processing")
+        warnings.append("Query matched a PII pattern - flagged only, it was sent to the model unchanged")
     else:
         details.append("PII check: No sensitive identifiers detected in query")
 

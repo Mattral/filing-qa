@@ -31,9 +31,9 @@ This Space is a demo of the research prototype at
 
 - **👁️ Vision chart extraction** — GPT-4o / Gemini 2.5 Flash describe charts and graphs into searchable text
 - **⚡ Hybrid RRF retrieval** — dense (BAAI/bge-small-en-v1.5) + BM25 fused with Reciprocal Rank Fusion (k=60)
-- **🔢 Numeric grounding** — every number in the answer cross-checked against source context
-- **🔒 PII + injection protection** — SSNs, IBANs, CUSIPs redacted; prompt injection patterns blocked
-- **📍 Page-level citations** — every claim attributed to a specific document and page
+- **🔢 Numeric grounding check** — flags any number in the answer that does not appear in the retrieved context. It cannot catch a real number used for the wrong thing, and correct derived figures are flagged too
+- **🔒 PII and injection pattern checks** — after the answer is generated, the query is scanned with regex patterns for identifiers (SSN, IBAN, CUSIP, ISIN, card, email, phone, account) and for known prompt-injection phrases. Matches are flagged in the Guardrails tab; the query is not changed before it reaches the model. How well the patterns work has not been measured
+- **📍 Citations** — the Sources tab lists the document and page of each retrieved chunk. Page numbers inside the answer text are written by the model and are not checked; in the main pipeline they are unreliable when chunks lack page metadata
 - **🔬 Full pipeline transparency** — see every retrieval score, RRF weight, generation cost
 
 ## Models (v2.0 — current)
@@ -59,8 +59,8 @@ PDF → pdfplumber (text + tables) + Vision LLM (charts)
     → BM25Okapi keyword index
     → RRF fusion: 0.7/(60+dense_rank+1) + 0.3/(60+bm25_rank+1)
     → Top-k chunks → GPT-4o-mini / Gemini 2.5 Flash generation
-    → Guardrails: injection check → PII redaction → numeric grounding
-    → Grounded answer + page-level citations
+    → Checks on the result: injection patterns → PII patterns → numeric grounding (flag only)
+    → Answer + cited sources
 ```
 
 Mirrors the production pipeline in

@@ -210,7 +210,7 @@ def _fmt_answer(gen: GenerationResult, guard: GuardrailResult) -> str:
     for w in guard.warnings:
         md += f"\n\n> {w}"
     if guard.redacted_query:
-        md += "\n\n> Your query contained PII — it was redacted before processing."
+        md += "\n\n> Your query matched a PII pattern. It was sent to the model unchanged; see the Guardrails tab."
     return md
 
 
@@ -314,7 +314,7 @@ def create_demo() -> gr.Blocks:
 [![Stars](https://img.shields.io/github/stars/Mattral/filing-qa?style=social)]({GITHUB_URL})
 
 > Upload a 10-K, 10-Q, or earnings release PDF. Ask a question. Get a grounded, cited answer.
-> Every number in the answer is cross-checked against the source.
+> Numbers in the answer that do not appear in the retrieved text are flagged; a real number used for the wrong thing is not caught.
 """)
 
         with gr.Accordion("Why This System Stands Out", open=False):
@@ -323,9 +323,9 @@ def create_demo() -> gr.Blocks:
 |---|---|
 | **Vision-Language chart extraction** | Describes charts, graphs, and complex tables visually — not just OCR |
 | **Hybrid RRF retrieval** | Dense semantic search + BM25 keyword matching fused with RRF |
-| **Numeric grounding guardrail** | Every number verified against source text — hallucinations flagged |
-| **PII + injection protection** | SSNs, IBANs, CUSIPs redacted; prompt injection blocked |
-| **Page-level citations** | Every claim maps to a specific document and page number |
+| **Numeric grounding check** | Flags numbers in the answer that are absent from the retrieved text. Cannot catch a real number used for the wrong thing; correct derived figures are flagged too |
+| **PII and injection pattern checks** | Regex checks on the query for identifiers (SSN, IBAN, CUSIP, …) and known injection phrases, run after the answer is generated. Matches are flagged, not removed. Not measured |
+| **Citations** | Sources list the document and page of each retrieved chunk. Page numbers in the answer text come from the model and are not checked |
 | **Full codebase** | This demo mirrors [`src/filing_qa/`]({GITHUB_URL}/tree/main/src/filing_qa) |
 """)
 
@@ -439,9 +439,9 @@ PDF
                     ▼
              Generated answer
                     ▼
-         Guardrails: injection → PII → numeric grounding
+         Checks (flag only): injection → PII → numeric grounding
                     ▼
-         Grounded answer + citations
+         Answer + cited sources
 ```
 
 **Model currency (v2.0)**: defaults to `gemini-2.5-flash`. Google retired
@@ -452,7 +452,7 @@ for the full model/pricing table.
 **This demo mirrors [`src/filing_qa/`]({GITHUB_URL}/tree/main/src/filing_qa).**
 The full research codebase additionally includes: multi-tenancy · pgvector/Qdrant ·
 Redis semantic cache · LangGraph agentic flow · Program-of-Thought calculator ·
-OpenTelemetry · Prometheus/Grafana · Kubernetes · Terraform · RAGAS evaluation · 520+ tests.
+OpenTelemetry · Prometheus/Grafana · Kubernetes · Terraform · RAGAS evaluation · 932 unit and integration tests in CI.
 
 [**View the full codebase →**]({GITHUB_URL})
 """)
