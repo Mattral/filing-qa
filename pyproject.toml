@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "filing-qa"
 version = "2.0.0"
-description = "Enterprise-grade multimodal RAG system for financial document analysis"
+description = "Research prototype for question answering over financial filings (multimodal RAG)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

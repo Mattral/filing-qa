@@ -1,4 +1,4 @@
-"""Enterprise CLI for the RAG Financial Multimodal system.
+"""Command-line interface for filing-qa.
 
 Commands:
   ingest   — Parse, embed, and index financial PDFs
@@ -34,7 +34,7 @@ from filing_qa.utils.logger import setup_logging
 
 app = typer.Typer(
     name="filing-qa",
-    help="🏦 Enterprise Multimodal RAG for Financial Documents",
+    help="🏦 filing-qa: research prototype for question answering over financial filings",
     pretty_exceptions_show_locals=False,
     rich_markup_mode="rich",
 )
@@ -45,7 +45,7 @@ logger = structlog.get_logger(__name__)
 def _version_callback(value: bool) -> None:
     if value:
         console.print("[bold cyan]RAG Financial Multimodal[/bold cyan] [green]v2.0.0[/green]")
-        console.print("Enterprise-grade multimodal RAG for financial document analysis")
+        console.print("Research prototype for question answering over financial filings")
         raise typer.Exit()
 
 

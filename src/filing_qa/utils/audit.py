@@ -1,7 +1,8 @@
 """Immutable audit logging for compliance and data lineage.
 
 Every ingest and query event is written to an append-only audit log
-with a SHA-256 content hash, enabling tamper detection.
+with a SHA-256 hash of each event's content. Hashes are not chained or keyed,
+so they detect accidental edits, not deliberate tampering.
 
 Backends: file (default), postgres (stub), S3 (stub).
 """
@@ -60,7 +61,7 @@ class AuditLogger:
             "tenant_id": tenant_id,
             **payload,
         }
-        # Append content hash for tamper detection
+        # Per-event content hash (not chained or keyed)
         event["content_hash"] = _sha256(json.dumps(event, sort_keys=True, default=str))
         return event
 

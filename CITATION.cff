@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this software in your research or production systems, please cite it using the metadata below."
 type: software
-title: "RAG Financial Multimodal"
+title: "filing-qa"
 abstract: >
-  Enterprise-grade multimodal RAG system for financial document analysis.
-  Ingests PDFs (10-K, 10-Q, earnings releases) with vision-language chart extraction,
-  hybrid RRF retrieval, cross-encoder reranking, numeric guardrails, PII redaction,
-  multi-tenancy, and full OpenTelemetry observability.
+  Research prototype for question answering over financial filings (multimodal RAG).
+  Ingests PDFs (10-K, 10-Q, earnings releases) with hybrid RRF retrieval, numeric
+  grounding checks and a sandboxed calculator, measured on a 119-question golden set.
+  Vision-language chart extraction is implemented but not yet validated.
 version: 2.0.0
 date-released: "2024-07-01"
 url: "https://github.com/Mattral/filing-qa"
@@ -20,7 +20,7 @@ keywords:
   - llm
   - 10-K
   - earnings
-  - enterprise
+  - research-prototype
   - vector-search
   - opentelemetry
 authors:
@@ -28,7 +28,7 @@ authors:
     website: "https://github.com/Mattral"
 preferred-citation:
   type: software
-  title: "RAG Financial Multimodal: Enterprise Multimodal RAG for Financial Documents"
+  title: "filing-qa: a research prototype for question answering over financial filings"
   version: 2.0.0
   url: "https://github.com/Mattral/filing-qa"
   year: 2024

@@ -1,6 +1,6 @@
 """Google Cloud Storage (GCS) document connector.
 
-Guideline §4: enterprise connectors — S3, Azure Blob, GCS.
+Guideline §4: document connectors — S3, Azure Blob, GCS.
 
 Usage:
     connector = GCSConnector(bucket="my-filings", prefix="10-K/")

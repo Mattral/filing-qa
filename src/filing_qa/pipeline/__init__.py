@@ -1,4 +1,4 @@
-"""Enterprise RAG Pipeline Orchestrator v2.0.
+"""RAG pipeline orchestrator.
 
 Orchestrates pluggable components end-to-end:
   Parser → LayoutParser → PIIRedactor → Vision → Embedder → VectorStore
@@ -119,7 +119,7 @@ def _public_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
 
 
 class RAGPipeline:
-    """Enterprise-grade multimodal RAG pipeline with pluggable components.
+    """Multimodal RAG pipeline with pluggable components.
 
     All components are injected (dependency injection pattern), so any
     parser, vector store, LLM, etc. can be swapped by config with zero

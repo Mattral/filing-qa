@@ -1,4 +1,4 @@
-"""Enterprise document connectors — S3, Azure Blob, local filesystem."""
+"""Document connectors — S3, Azure Blob, local filesystem."""
 
 from __future__ import annotations
 

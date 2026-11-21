@@ -1,6 +1,6 @@
 apiVersion: v2
 name: rag-financial
-description: Enterprise Multimodal RAG for Financial Documents
+description: Research prototype for question answering over financial filings (multimodal RAG)
 type: application
 version: 2.0.0
 appVersion: "2.0.0"

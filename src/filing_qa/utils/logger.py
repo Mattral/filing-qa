@@ -1,4 +1,4 @@
-"""Enterprise structured logging via structlog with OTel trace/span injection.
+"""Structured logging via structlog with OTel trace/span injection.
 
 Processors chain:
   add_log_level → add_logger_name → TimeStamper(ISO) → OTelContextProcessor

@@ -1,7 +1,7 @@
 """Centralized configuration using Pydantic v2 BaseSettings.
 
 Supports environment variables, .env files, multi-tenancy,
-secrets management, and all enterprise features.
+secrets management, and all optional features.
 """
 
 from __future__ import annotations
@@ -206,7 +206,7 @@ class LoggingConfig(BaseModel):
 
 
 class Config(BaseSettings):
-    """Main enterprise configuration for the RAG Financial system."""
+    """Main configuration for filing-qa."""
 
     model_config = SettingsConfigDict(
         env_file=".env",

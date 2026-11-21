@@ -1,4 +1,4 @@
-"""FastAPI application factory — v2.0 enterprise edition.
+"""FastAPI application factory.
 
 Routers: health, ingest, query, documents, tenants, feedback
 Middleware: CORS, API-Key auth, request timing, in-flight request tracking
@@ -137,9 +137,10 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="RAG Financial Multimodal API",
         description=(
-            "Enterprise-grade multimodal RAG for financial document analysis.\n\n"
-            "Features: PDF ingestion, GPT-4o/Gemini/Qwen2-VL vision, hybrid retrieval, "
-            "numeric guardrails, PII redaction, multi-tenancy, full OTel observability."
+            "Research prototype for question answering over financial filings.\n\n"
+            "Features: PDF ingestion, GPT-4o/Gemini/Qwen2-VL chart description (not yet "
+            "validated), hybrid retrieval, numeric grounding checks, PII redaction of "
+            "ingested text, per-tenant partitions, OpenTelemetry tracing."
         ),
         version="2.0.0",
         docs_url="/docs" if not cfg.is_production else None,
