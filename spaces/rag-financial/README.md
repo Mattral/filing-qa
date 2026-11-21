@@ -4,9 +4,10 @@ emoji: 🏦
 colorFrom: indigo
 colorTo: blue
 sdk: gradio
-sdk_version: 4.44.0
+sdk_version: 5.33.0
 app_file: app.py
 pinned: true
+python_version: "3.11"
 license: mit
 short_description: Research prototype RAG for financial filings
 tags:
